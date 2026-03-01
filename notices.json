@@ -14,6 +14,46 @@
           "title": "Known Issue on Chrome 145",
           "body": "Due to a Chrome 145 regression, titles of newly created tab groups may not render immediately until the group is clicked once. We have partially mitigated this by reusing existing groups, but we cannot fully work around it.\n\nIf this affects your workflow, please consider trying Chrome Beta 146 temporarily.",
           "linkText": "View Chromium issue"
+        },
+        "de": {
+          "title": "Bekanntes Problem unter Chrome 145",
+          "body": "Aufgrund einer Regression in Chrome 145 werden Titel neu erstellter Tab-Gruppen möglicherweise nicht sofort angezeigt, bis die Gruppe einmal angeklickt wird. Wir haben das Problem durch Wiederverwendung bestehender Gruppen teilweise gemindert, können es jedoch nicht vollständig umgehen.\n\nWenn dein Workflow betroffen ist, versuche bitte vorübergehend Chrome Beta 146.",
+          "linkText": "Chromium-Problem ansehen"
+        },
+        "es": {
+          "title": "Problema conocido en Chrome 145",
+          "body": "Debido a una regresión en Chrome 145, los títulos de los grupos de pestañas recién creados pueden no mostrarse de inmediato hasta que se haga clic una vez en el grupo. Hemos mitigado parcialmente esto reutilizando grupos existentes, pero no podemos solucionarlo por completo.\n\nSi esto afecta tu flujo de trabajo, considera probar temporalmente Chrome Beta 146.",
+          "linkText": "Ver incidencia de Chromium"
+        },
+        "fr": {
+          "title": "Problème connu sur Chrome 145",
+          "body": "En raison d'une régression de Chrome 145, les titres des groupes d'onglets nouvellement créés peuvent ne pas s'afficher immédiatement tant que le groupe n'a pas été cliqué une fois. Nous avons partiellement atténué le problème en réutilisant les groupes existants, mais nous ne pouvons pas le contourner entièrement.\n\nSi cela impacte votre flux de travail, essayez temporairement Chrome Beta 146.",
+          "linkText": "Voir le ticket Chromium"
+        },
+        "ko": {
+          "title": "Chrome 145 알려진 이슈",
+          "body": "Chrome 145 회귀 문제로 인해 새로 만든 탭 그룹의 제목이 그룹을 한 번 클릭하기 전까지 즉시 표시되지 않을 수 있습니다. 기존 그룹 재사용으로 일부 완화했지만 완전히 우회할 수는 없습니다.\n\n업무에 영향이 있다면 임시로 Chrome Beta 146 사용을 권장합니다.",
+          "linkText": "Chromium 이슈 보기"
+        },
+        "pl": {
+          "title": "Znany problem w Chrome 145",
+          "body": "Z powodu regresji w Chrome 145 tytuły nowo tworzonych grup kart mogą nie wyświetlać się od razu, dopóki grupa nie zostanie kliknięta co najmniej raz. Częściowo ograniczyliśmy ten problem przez ponowne używanie istniejących grup, ale nie możemy go całkowicie obejść.\n\nJeśli wpływa to na Twój workflow, rozważ tymczasowe użycie Chrome Beta 146.",
+          "linkText": "Zobacz zgłoszenie Chromium"
+        },
+        "ru": {
+          "title": "Известная проблема в Chrome 145",
+          "body": "Из-за регрессии в Chrome 145 названия новых групп вкладок могут не отображаться сразу, пока вы не нажмёте на группу один раз. Мы частично смягчили проблему, повторно используя существующие группы, но полностью обойти её не можем.\n\nЕсли это влияет на вашу работу, попробуйте временно использовать Chrome Beta 146.",
+          "linkText": "Открыть проблему Chromium"
+        },
+        "tr": {
+          "title": "Chrome 145'te bilinen sorun",
+          "body": "Chrome 145 regresyonu nedeniyle yeni oluşturulan sekme gruplarının başlıkları, gruba bir kez tıklanana kadar hemen görünmeyebilir. Mevcut grupları yeniden kullanarak sorunu kısmen azalttık, ancak tamamen aşamıyoruz.\n\nBu durum iş akışınızı etkiliyorsa geçici olarak Chrome Beta 146 kullanmayı düşünebilirsiniz.",
+          "linkText": "Chromium sorununu görüntüle"
+        },
+        "uk": {
+          "title": "Відома проблема в Chrome 145",
+          "body": "Через регресію в Chrome 145 назви новостворених груп вкладок можуть не відображатися одразу, доки ви не натиснете на групу один раз. Ми частково пом'якшили це, повторно використовуючи наявні групи, але повністю обійти проблему не можемо.\n\nЯкщо це впливає на вашу роботу, спробуйте тимчасово використовувати Chrome Beta 146.",
+          "linkText": "Переглянути проблему Chromium"
         }
       }
     }
