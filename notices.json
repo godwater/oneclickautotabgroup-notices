@@ -16,23 +16,6 @@
           "linkText": "View Chromium issue"
         }
       }
-    },
-    {
-      "id": "notice-2026-01-debug-test-2",
-      "updatedAt": 1769558400000,
-      "link": "https://www.google.com/chrome/beta/",
-      "i18n": {
-        "zh_CN": {
-          "title": "测试公告 2",
-          "body": "这是用于测试多条公告展示的示例内容。关闭本条后，后续不应再次弹出同一 ID 的公告。",
-          "linkText": "下载 Chrome Beta"
-        },
-        "en": {
-          "title": "Test Notice 2",
-          "body": "This is a sample notice used to test multiple notice entries. After closing it, the same ID should not pop up again.",
-          "linkText": "Download Chrome Beta"
-        }
-      }
     }
   ]
 }
