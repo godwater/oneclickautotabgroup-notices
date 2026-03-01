@@ -1,0 +1,38 @@
+{
+  "notices": [
+    {
+      "id": "notice-2026-01-chrome145-label-render",
+      "updatedAt": 1769472000000,
+      "link": "https://issues.chromium.org/issues/483537691",
+      "i18n": {
+        "zh_CN": {
+          "title": "Chrome 145 已知问题公告",
+          "body": "受 Chrome 145 变更影响，新创建的标签组名称可能不会立即显示，需要手动点击一次分组后才会渲染。我们已通过复用已有分组做了部分缓解，但无法彻底规避。\n\n如果你依赖该功能，建议临时尝试升级到 Chrome Beta 146。",
+          "linkText": "查看 Chromium 问题"
+        },
+        "en": {
+          "title": "Known Issue on Chrome 145",
+          "body": "Due to a Chrome 145 regression, titles of newly created tab groups may not render immediately until the group is clicked once. We have partially mitigated this by reusing existing groups, but we cannot fully work around it.\n\nIf this affects your workflow, please consider trying Chrome Beta 146 temporarily.",
+          "linkText": "View Chromium issue"
+        }
+      }
+    },
+    {
+      "id": "notice-2026-01-debug-test-2",
+      "updatedAt": 1769558400000,
+      "link": "https://www.google.com/chrome/beta/",
+      "i18n": {
+        "zh_CN": {
+          "title": "测试公告 2",
+          "body": "这是用于测试多条公告展示的示例内容。关闭本条后，后续不应再次弹出同一 ID 的公告。",
+          "linkText": "下载 Chrome Beta"
+        },
+        "en": {
+          "title": "Test Notice 2",
+          "body": "This is a sample notice used to test multiple notice entries. After closing it, the same ID should not pop up again.",
+          "linkText": "Download Chrome Beta"
+        }
+      }
+    }
+  ]
+}
