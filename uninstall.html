@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>One Click Auto Tab Group</title>
+  <style>
+    :root {
+      --bg: #f4f4f9;
+      --card: #ffffff;
+      --text: #333333;
+      --muted: #555555;
+      --border: #dddddd;
+      --accent: #4285f4;
+      --accent-hover: #3367d6;
+      --on-accent: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #202124;
+        --card: #2d2e31;
+        --text: #e8eaed;
+        --muted: #bdc1c6;
+        --border: #5f6368;
+        --accent: #8ab4f8;
+        --accent-hover: #aecbfa;
+        --on-accent: #202124;
+      }
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0 auto;
+      padding: 20px 16px;
+      max-width: 600px;
+    }
+    h1 { font-size: 1.6em; }
+    p { line-height: 1.5; color: var(--muted); }
+    .card {
+      background: var(--card);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+    fieldset { border: none; margin: 0 0 20px; padding: 0; }
+    legend, label.field { display: block; font-weight: bold; margin-bottom: 8px; color: var(--muted); }
+    .reason { display: flex; align-items: center; gap: 8px; padding: 6px 0; cursor: pointer; }
+    input[type="email"], textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      box-sizing: border-box;
+      font: inherit;
+      background: var(--card);
+      color: var(--text);
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    .form-group { margin-bottom: 20px; }
+    button {
+      background: var(--accent);
+      color: var(--on-accent);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover { background: var(--accent-hover); }
+    button:disabled { opacity: 0.6; cursor: default; }
+    .message { display: none; margin-top: 16px; }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <h1 data-i18n="title">Sorry to see you go</h1>
+  <p data-i18n="intro">One Click Auto Tab Group has been removed. Could you tell us why? It only takes a few seconds and helps make the extension better.</p>
+
+  <div class="card">
+    <form id="survey" action="https://formspree.io/f/mjkybprb" method="POST">
+      <input type="hidden" name="_subject" value="Uninstall survey">
+      <input type="hidden" name="source" value="uninstall">
+      <input type="hidden" name="version" id="version">
+      <input type="hidden" name="language" id="language">
+
+      <fieldset>
+        <legend data-i18n="question">Why did you remove it?</legend>
+        <label class="reason"><input type="radio" name="reason" value="wrong grouping" required> <span data-i18n="wrongGrouping">It grouped my tabs the wrong way</span></label>
+        <label class="reason"><input type="radio" name="reason" value="confusing"> <span data-i18n="confusing">It was confusing to use</span></label>
+        <label class="reason"><input type="radio" name="reason" value="bugs or slow"> <span data-i18n="bugs">It had bugs or slowed down Chrome</span></label>
+        <label class="reason"><input type="radio" name="reason" value="not needed"> <span data-i18n="notNeeded">I don't need it anymore</span></label>
+        <label class="reason"><input type="radio" name="reason" value="other extension"> <span data-i18n="otherExtension">I switched to another extension</span></label>
+        <label class="reason"><input type="radio" name="reason" value="other"> <span data-i18n="other">Another reason</span></label>
+      </fieldset>
+
+      <div class="form-group">
+        <label class="field" for="comment" data-i18n="comment">Anything else you'd like to tell us? (optional)</label>
+        <textarea id="comment" name="comment"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="field" for="email" data-i18n="email">Your email, if you'd like a reply (optional)</label>
+        <input type="email" id="email" name="email">
+      </div>
+
+      <button type="submit" id="send" data-i18n="send">Send</button>
+    </form>
+    <p class="message" id="thanks" data-i18n="thanks">Thank you! Your answer has been sent.</p>
+    <p class="message" id="error" data-i18n="error">Sorry, your answer couldn't be sent. Please try again.</p>
+  </div>
+
+  <p id="reinstall" hidden><span data-i18n="reinstall">Removed it by mistake?</span> <a id="reinstallLink" target="_blank" rel="noopener" data-i18n="reinstallLink">Reinstall from the Chrome Web Store</a></p>
+
+  <script>
+    const strings = {
+      en: {},
+      de: {
+        title: 'Schade, dass du gehst',
+        intro: 'One Click Auto Tab Group wurde entfernt. Magst du uns sagen, warum? Es dauert nur ein paar Sekunden und hilft, die Erweiterung zu verbessern.',
+        question: 'Warum hast du sie entfernt?',
+        wrongGrouping: 'Sie hat meine Tabs falsch gruppiert',
+        confusing: 'Sie war schwer zu verstehen',
+        bugs: 'Sie hatte Fehler oder hat Chrome verlangsamt',
+        notNeeded: 'Ich brauche sie nicht mehr',
+        otherExtension: 'Ich nutze jetzt eine andere Erweiterung',
+        other: 'Ein anderer Grund',
+        comment: 'Möchtest du uns noch etwas sagen? (optional)',
+        email: 'Deine E-Mail-Adresse, falls du eine Antwort möchtest (optional)',
+        send: 'Senden',
+        thanks: 'Danke! Deine Antwort wurde gesendet.',
+        error: 'Deine Antwort konnte leider nicht gesendet werden. Bitte versuche es erneut.',
+        reinstall: 'Aus Versehen entfernt?',
+        reinstallLink: 'Im Chrome Web Store neu installieren'
+      },
+      es: {
+        title: 'Lamentamos que te vayas',
+        intro: 'Se ha eliminado One Click Auto Tab Group. ¿Nos cuentas por qué? Solo lleva unos segundos y nos ayuda a mejorar la extensión.',
+        question: '¿Por qué la eliminaste?',
+        wrongGrouping: 'Agrupaba mis pestañas de forma incorrecta',
+        confusing: 'Era confusa de usar',
+        bugs: 'Tenía errores o ralentizaba Chrome',
+        notNeeded: 'Ya no la necesito',
+        otherExtension: 'Cambié a otra extensión',
+        other: 'Otro motivo',
+        comment: '¿Quieres contarnos algo más? (opcional)',
+        email: 'Tu correo electrónico, si quieres una respuesta (opcional)',
+        send: 'Enviar',
+        thanks: '¡Gracias! Tu respuesta se ha enviado.',
+        error: 'No se pudo enviar tu respuesta. Inténtalo de nuevo.',
+        reinstall: '¿La eliminaste por error?',
+        reinstallLink: 'Vuelve a instalarla desde Chrome Web Store'
+      },
+      fr: {
+        title: 'Dommage de vous voir partir',
+        intro: "One Click Auto Tab Group a été supprimée. Pouvez-vous nous dire pourquoi ? Cela ne prend que quelques secondes et nous aide à améliorer l'extension.",
+        question: "Pourquoi l'avez-vous supprimée ?",
+        wrongGrouping: 'Elle regroupait mal mes onglets',
+        confusing: 'Elle était difficile à comprendre',
+        bugs: 'Elle avait des bugs ou ralentissait Chrome',
+        notNeeded: "Je n'en ai plus besoin",
+        otherExtension: "J'utilise une autre extension",
+        other: 'Une autre raison',
+        comment: 'Autre chose à nous dire ? (facultatif)',
+        email: 'Votre e-mail, si vous souhaitez une réponse (facultatif)',
+        send: 'Envoyer',
+        thanks: 'Merci ! Votre réponse a été envoyée.',
+        error: "Votre réponse n'a pas pu être envoyée. Veuillez réessayer.",
+        reinstall: 'Supprimée par erreur ?',
+        reinstallLink: 'Réinstaller depuis le Chrome Web Store'
+      },
+      ko: {
+        title: '떠나신다니 아쉽습니다',
+        intro: 'One Click Auto Tab Group이 삭제되었습니다. 삭제한 이유를 알려 주시겠어요? 몇 초면 충분하며 확장 프로그램을 개선하는 데 큰 도움이 됩니다.',
+        question: '삭제한 이유가 무엇인가요?',
+        wrongGrouping: '탭을 원하는 대로 그룹화하지 않았어요',
+        confusing: '사용법이 헷갈렸어요',
+        bugs: '버그가 있거나 Chrome이 느려졌어요',
+        notNeeded: '더 이상 필요하지 않아요',
+        otherExtension: '다른 확장 프로그램으로 바꿨어요',
+        other: '기타',
+        comment: '더 하고 싶은 말씀이 있나요? (선택 사항)',
+        email: '답변을 원하시면 이메일 주소 (선택 사항)',
+        send: '보내기',
+        thanks: '감사합니다! 답변이 전송되었습니다.',
+        error: '답변을 보내지 못했습니다. 다시 시도해 주세요.',
+        reinstall: '실수로 삭제하셨나요?',
+        reinstallLink: 'Chrome 웹 스토어에서 다시 설치'
+      },
+      pl: {
+        title: 'Szkoda, że odchodzisz',
+        intro: 'Rozszerzenie One Click Auto Tab Group zostało usunięte. Powiesz nam dlaczego? To zajmie tylko kilka sekund i pomoże ulepszyć rozszerzenie.',
+        question: 'Dlaczego je usunąłeś?',
+        wrongGrouping: 'Źle grupowało moje karty',
+        confusing: 'Było trudne w obsłudze',
+        bugs: 'Miało błędy lub spowalniało Chrome',
+        notNeeded: 'Nie jest mi już potrzebne',
+        otherExtension: 'Przeszedłem na inne rozszerzenie',
+        other: 'Inny powód',
+        comment: 'Chcesz nam coś jeszcze przekazać? (opcjonalnie)',
+        email: 'Twój e-mail, jeśli chcesz otrzymać odpowiedź (opcjonalnie)',
+        send: 'Wyślij',
+        thanks: 'Dziękujemy! Twoja odpowiedź została wysłana.',
+        error: 'Nie udało się wysłać odpowiedzi. Spróbuj ponownie.',
+        reinstall: 'Usunięte przez pomyłkę?',
+        reinstallLink: 'Zainstaluj ponownie z Chrome Web Store'
+      },
+      ru: {
+        title: 'Жаль, что вы уходите',
+        intro: 'Расширение One Click Auto Tab Group удалено. Расскажете, почему? Это займёт всего несколько секунд и поможет сделать расширение лучше.',
+        question: 'Почему вы его удалили?',
+        wrongGrouping: 'Оно неправильно группировало мои вкладки',
+        confusing: 'Им было сложно пользоваться',
+        bugs: 'В нём были ошибки или оно замедляло Chrome',
+        notNeeded: 'Оно мне больше не нужно',
+        otherExtension: 'Я перешёл на другое расширение',
+        other: 'Другая причина',
+        comment: 'Хотите что-то добавить? (необязательно)',
+        email: 'Ваш адрес электронной почты, если хотите получить ответ (необязательно)',
+        send: 'Отправить',
+        thanks: 'Спасибо! Ваш ответ отправлен.',
+        error: 'Не удалось отправить ответ. Попробуйте ещё раз.',
+        reinstall: 'Удалили по ошибке?',
+        reinstallLink: 'Установить снова из Интернет-магазина Chrome'
+      },
+      tr: {
+        title: 'Gittiğinize üzüldük',
+        intro: 'One Click Auto Tab Group kaldırıldı. Nedenini bize söyler misiniz? Sadece birkaç saniye sürer ve uzantıyı geliştirmemize yardımcı olur.',
+        question: 'Neden kaldırdınız?',
+        wrongGrouping: 'Sekmelerimi yanlış grupladı',
+        confusing: 'Kullanımı kafa karıştırıcıydı',
+        bugs: 'Hataları vardı veya Chrome\'u yavaşlattı',
+        notNeeded: 'Artık ihtiyacım yok',
+        otherExtension: 'Başka bir uzantıya geçtim',
+        other: 'Başka bir neden',
+        comment: 'Eklemek istediğiniz bir şey var mı? (isteğe bağlı)',
+        email: 'Yanıt almak isterseniz e-posta adresiniz (isteğe bağlı)',
+        send: 'Gönder',
+        thanks: 'Teşekkürler! Yanıtınız gönderildi.',
+        error: 'Yanıtınız gönderilemedi. Lütfen tekrar deneyin.',
+        reinstall: 'Yanlışlıkla mı kaldırdınız?',
+        reinstallLink: 'Chrome Web Mağazası\'ndan yeniden yükleyin'
+      },
+      uk: {
+        title: 'Шкода, що ви йдете',
+        intro: 'Розширення One Click Auto Tab Group видалено. Розкажете, чому? Це займе лише кілька секунд і допоможе покращити розширення.',
+        question: 'Чому ви його видалили?',
+        wrongGrouping: 'Воно неправильно групувало мої вкладки',
+        confusing: 'Ним було складно користуватися',
+        bugs: 'У ньому були помилки або воно сповільнювало Chrome',
+        notNeeded: 'Воно мені більше не потрібне',
+        otherExtension: 'Я перейшов на інше розширення',
+        other: 'Інша причина',
+        comment: 'Бажаєте щось додати? (необов’язково)',
+        email: 'Ваша електронна адреса, якщо хочете отримати відповідь (необов’язково)',
+        send: 'Надіслати',
+        thanks: 'Дякуємо! Вашу відповідь надіслано.',
+        error: 'Не вдалося надіслати відповідь. Спробуйте ще раз.',
+        reinstall: 'Видалили помилково?',
+        reinstallLink: 'Установити знову з Інтернет-магазину Chrome'
+      },
+      zh_CN: {
+        title: '很遗憾你要离开',
+        intro: 'One Click Auto Tab Group 已被移除。能告诉我们原因吗？只需几秒钟，就能帮助我们改进这个扩展。',
+        question: '你为什么移除它？',
+        wrongGrouping: '它没有按我想要的方式分组标签页',
+        confusing: '用起来让人困惑',
+        bugs: '有问题或让 Chrome 变慢',
+        notNeeded: '我不再需要它了',
+        otherExtension: '我换用了其他扩展',
+        other: '其他原因',
+        comment: '还有什么想告诉我们的吗？（可选）',
+        email: '如需回复，请留下你的邮箱（可选）',
+        send: '发送',
+        thanks: '谢谢！你的回答已发送。',
+        error: '抱歉，回答未能发送，请重试。',
+        reinstall: '误删了？',
+        reinstallLink: '从 Chrome 应用商店重新安装'
+      }
+    };
+
+    // The extension adds ?lang=<Chrome UI language>&v=<version>&id=<extension id>
+    const params = new URLSearchParams(location.search);
+    const requested = (params.get('lang') || navigator.language || 'en').replace('-', '_');
+    const lang = strings[requested] ? requested
+      : requested.toLowerCase().startsWith('zh') ? 'zh_CN'
+      : strings[requested.split('_')[0]] ? requested.split('_')[0]
+      : 'en';
+
+    document.documentElement.lang = lang.replace('_', '-');
+    document.querySelectorAll('[data-i18n]').forEach((element) => {
+      const text = strings[lang][element.dataset.i18n];
+      if (text) element.textContent = text;
+    });
+    document.getElementById('version').value = params.get('v') || '';
+    document.getElementById('language').value = lang;
+
+    const extensionId = params.get('id');
+    if (extensionId && /^[a-p]{32}$/.test(extensionId)) {
+      document.getElementById('reinstallLink').href = `https://chromewebstore.google.com/detail/${extensionId}`;
+      document.getElementById('reinstall').hidden = false;
+    }
+
+    // Send in the background so people stay on this page; without JavaScript the
+    // form still posts normally
+    const form = document.getElementById('survey');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = document.getElementById('send');
+      button.disabled = true;
+      document.getElementById('error').style.display = 'none';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        form.style.display = 'none';
+        document.getElementById('thanks').style.display = 'block';
+      } catch (error) {
+        document.getElementById('error').style.display = 'block';
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

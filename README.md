@@ -36,3 +36,7 @@ The extension reads `notices.json` with this shape:
 2. Push changes to `main`.
 3. Use the public URL:
    - `https://<username>.github.io/oneclickautotabgroup-notices/notices.json`
+
+## Uninstall survey
+
+`uninstall.html` is opened by Chrome after the extension is removed (`chrome.runtime.setUninstallURL`). The extension adds `?lang=<Chrome UI language>&v=<version>&id=<extension id>`. Answers go to the extension's Formspree form with `source=uninstall`.
