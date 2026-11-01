@@ -48,7 +48,7 @@
     fieldset { border: none; margin: 0 0 20px; padding: 0; }
     legend, label.field { display: block; font-weight: bold; margin-bottom: 8px; color: var(--muted); }
     .reason { display: flex; align-items: center; gap: 8px; padding: 6px 0; cursor: pointer; }
-    input[type="email"], textarea {
+    input[type="email"], input[type="text"], textarea {
       width: 100%;
       padding: 10px;
       border: 1px solid var(--border);
@@ -59,6 +59,7 @@
       color: var(--text);
     }
     textarea { min-height: 100px; resize: vertical; }
+    #otherProblemText { margin: 4px 0 0 24px; width: calc(100% - 24px); }
     .form-group { margin-bottom: 20px; }
     button {
       background: var(--accent);
@@ -96,6 +97,16 @@
         <label class="reason"><input type="radio" name="reason" value="other"> <span data-i18n="other">Another reason</span></label>
       </fieldset>
 
+      <fieldset id="groupingProblems" hidden>
+        <legend data-i18n="groupingQuestion">What went wrong? (optional)</legend>
+        <label class="reason"><input type="checkbox" name="grouping problem" value="split site"> <span data-i18n="splitSite">It split one site into several groups</span></label>
+        <label class="reason"><input type="checkbox" name="grouping problem" value="unrelated together"> <span data-i18n="unrelatedTogether">It put unrelated tabs in the same group</span></label>
+        <label class="reason"><input type="checkbox" name="grouping problem" value="wanted topics"> <span data-i18n="wantedTopics">I wanted groups by topic, not by site</span></label>
+        <label class="reason"><input type="checkbox" name="grouping problem" value="moved tabs"> <span data-i18n="movedTabs">It moved tabs I wanted to keep where they were</span></label>
+        <label class="reason"><input type="checkbox" name="grouping problem" value="other" id="otherProblem"> <span data-i18n="otherProblem">Something else</span></label>
+        <input type="text" id="otherProblemText" name="grouping problem details" data-i18n-placeholder="otherProblemPlaceholder" placeholder="What happened?" hidden disabled>
+      </fieldset>
+
       <div class="form-group">
         <label class="field" for="comment" data-i18n="comment">Anything else you'd like to tell us? (optional)</label>
         <textarea id="comment" name="comment"></textarea>
@@ -127,6 +138,13 @@
         notNeeded: 'Ich brauche sie nicht mehr',
         otherExtension: 'Ich nutze jetzt eine andere Erweiterung',
         other: 'Ein anderer Grund',
+        groupingQuestion: 'Was ist schiefgelaufen? (optional)',
+        splitSite: 'Sie hat eine Website auf mehrere Gruppen verteilt',
+        unrelatedTogether: 'Sie hat Tabs, die nichts miteinander zu tun haben, in dieselbe Gruppe gesteckt',
+        wantedTopics: 'Ich wollte Gruppen nach Thema, nicht nach Website',
+        movedTabs: 'Sie hat Tabs verschoben, die bleiben sollten, wo sie waren',
+        otherProblem: 'Etwas anderes',
+        otherProblemPlaceholder: 'Was ist passiert?',
         comment: 'Möchtest du uns noch etwas sagen? (optional)',
         email: 'Deine E-Mail-Adresse, falls du eine Antwort möchtest (optional)',
         send: 'Senden',
@@ -145,6 +163,13 @@
         notNeeded: 'Ya no la necesito',
         otherExtension: 'Cambié a otra extensión',
         other: 'Otro motivo',
+        groupingQuestion: '¿Qué salió mal? (opcional)',
+        splitSite: 'Repartía un mismo sitio en varios grupos',
+        unrelatedTogether: 'Ponía pestañas sin relación en el mismo grupo',
+        wantedTopics: 'Quería grupos por tema, no por sitio',
+        movedTabs: 'Movía pestañas que quería dejar donde estaban',
+        otherProblem: 'Otra cosa',
+        otherProblemPlaceholder: '¿Qué pasó?',
         comment: '¿Quieres contarnos algo más? (opcional)',
         email: 'Tu correo electrónico, si quieres una respuesta (opcional)',
         send: 'Enviar',
@@ -163,6 +188,13 @@
         notNeeded: "Je n'en ai plus besoin",
         otherExtension: "J'utilise une autre extension",
         other: 'Une autre raison',
+        groupingQuestion: "Qu'est-ce qui n'allait pas ? (facultatif)",
+        splitSite: 'Elle répartissait un même site dans plusieurs groupes',
+        unrelatedTogether: 'Elle mettait des onglets sans rapport dans le même groupe',
+        wantedTopics: 'Je voulais des groupes par thème, pas par site',
+        movedTabs: 'Elle déplaçait des onglets que je voulais laisser à leur place',
+        otherProblem: 'Autre chose',
+        otherProblemPlaceholder: "Que s'est-il passé ?",
         comment: 'Autre chose à nous dire ? (facultatif)',
         email: 'Votre e-mail, si vous souhaitez une réponse (facultatif)',
         send: 'Envoyer',
@@ -181,6 +213,13 @@
         notNeeded: '더 이상 필요하지 않아요',
         otherExtension: '다른 확장 프로그램으로 바꿨어요',
         other: '기타',
+        groupingQuestion: '무엇이 문제였나요? (선택 사항)',
+        splitSite: '한 사이트를 여러 그룹으로 나눴어요',
+        unrelatedTogether: '서로 관련 없는 탭을 같은 그룹에 넣었어요',
+        wantedTopics: '사이트가 아니라 주제별로 그룹화하고 싶었어요',
+        movedTabs: '제자리에 두고 싶은 탭까지 옮겼어요',
+        otherProblem: '기타',
+        otherProblemPlaceholder: '어떤 일이 있었나요?',
         comment: '더 하고 싶은 말씀이 있나요? (선택 사항)',
         email: '답변을 원하시면 이메일 주소 (선택 사항)',
         send: '보내기',
@@ -199,6 +238,13 @@
         notNeeded: 'Nie jest mi już potrzebne',
         otherExtension: 'Przeszedłem na inne rozszerzenie',
         other: 'Inny powód',
+        groupingQuestion: 'Co poszło nie tak? (opcjonalnie)',
+        splitSite: 'Rozdzielało jedną witrynę na kilka grup',
+        unrelatedTogether: 'Wrzucało niepowiązane karty do jednej grupy',
+        wantedTopics: 'Chciałem grup według tematu, a nie witryny',
+        movedTabs: 'Przenosiło karty, które chciałem zostawić na miejscu',
+        otherProblem: 'Coś innego',
+        otherProblemPlaceholder: 'Co się stało?',
         comment: 'Chcesz nam coś jeszcze przekazać? (opcjonalnie)',
         email: 'Twój e-mail, jeśli chcesz otrzymać odpowiedź (opcjonalnie)',
         send: 'Wyślij',
@@ -217,6 +263,13 @@
         notNeeded: 'Оно мне больше не нужно',
         otherExtension: 'Я перешёл на другое расширение',
         other: 'Другая причина',
+        groupingQuestion: 'Что пошло не так? (необязательно)',
+        splitSite: 'Оно разделяло один сайт на несколько групп',
+        unrelatedTogether: 'Оно помещало несвязанные вкладки в одну группу',
+        wantedTopics: 'Я хотел группы по темам, а не по сайтам',
+        movedTabs: 'Оно перемещало вкладки, которые я хотел оставить на месте',
+        otherProblem: 'Другое',
+        otherProblemPlaceholder: 'Что произошло?',
         comment: 'Хотите что-то добавить? (необязательно)',
         email: 'Ваш адрес электронной почты, если хотите получить ответ (необязательно)',
         send: 'Отправить',
@@ -235,6 +288,13 @@
         notNeeded: 'Artık ihtiyacım yok',
         otherExtension: 'Başka bir uzantıya geçtim',
         other: 'Başka bir neden',
+        groupingQuestion: 'Ne yanlış gitti? (isteğe bağlı)',
+        splitSite: 'Bir siteyi birkaç gruba böldü',
+        unrelatedTogether: 'Birbiriyle ilgisi olmayan sekmeleri aynı gruba koydu',
+        wantedTopics: 'Gruplar site yerine konuya göre olsun istedim',
+        movedTabs: 'Yerinde kalmasını istediğim sekmeleri taşıdı',
+        otherProblem: 'Başka bir şey',
+        otherProblemPlaceholder: 'Ne oldu?',
         comment: 'Eklemek istediğiniz bir şey var mı? (isteğe bağlı)',
         email: 'Yanıt almak isterseniz e-posta adresiniz (isteğe bağlı)',
         send: 'Gönder',
@@ -253,6 +313,13 @@
         notNeeded: 'Воно мені більше не потрібне',
         otherExtension: 'Я перейшов на інше розширення',
         other: 'Інша причина',
+        groupingQuestion: 'Що пішло не так? (необов’язково)',
+        splitSite: 'Воно розділяло один сайт на кілька груп',
+        unrelatedTogether: 'Воно поміщало непов’язані вкладки в одну групу',
+        wantedTopics: 'Я хотів групи за темами, а не за сайтами',
+        movedTabs: 'Воно переміщувало вкладки, які я хотів залишити на місці',
+        otherProblem: 'Інше',
+        otherProblemPlaceholder: 'Що сталося?',
         comment: 'Бажаєте щось додати? (необов’язково)',
         email: 'Ваша електронна адреса, якщо хочете отримати відповідь (необов’язково)',
         send: 'Надіслати',
@@ -271,6 +338,13 @@
         notNeeded: '我不再需要它了',
         otherExtension: '我换用了其他扩展',
         other: '其他原因',
+        groupingQuestion: '哪里出了问题？（可选）',
+        splitSite: '它把同一个网站分成了好几个分组',
+        unrelatedTogether: '它把不相关的标签页放进了同一个分组',
+        wantedTopics: '我想按主题分组，而不是按网站',
+        movedTabs: '它移动了我想留在原处的标签页',
+        otherProblem: '其他',
+        otherProblemPlaceholder: '发生了什么？',
         comment: '还有什么想告诉我们的吗？（可选）',
         email: '如需回复，请留下你的邮箱（可选）',
         send: '发送',
@@ -294,6 +368,10 @@
       const text = strings[lang][element.dataset.i18n];
       if (text) element.textContent = text;
     });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+      const text = strings[lang][element.dataset.i18nPlaceholder];
+      if (text) element.placeholder = text;
+    });
     document.getElementById('version').value = params.get('v') || '';
     document.getElementById('language').value = lang;
 
@@ -302,6 +380,31 @@
       document.getElementById('reinstallLink').href = `https://chromewebstore.google.com/detail/${extensionId}`;
       document.getElementById('reinstall').hidden = false;
     }
+
+    // Ask how the grouping was wrong only when that's the reason picked
+    const groupingProblems = document.getElementById('groupingProblems');
+    document.querySelectorAll('input[name="reason"]').forEach((radio) => {
+      radio.addEventListener('change', () => {
+        const show = radio.value === 'wrong grouping';
+        groupingProblems.hidden = !show;
+        if (!show) {
+          groupingProblems.querySelectorAll('input[type="checkbox"]').forEach((box) => { box.checked = false; });
+          showOtherProblemText(false);
+        }
+      });
+    });
+
+    // "Something else" opens a box to describe it
+    const otherProblem = document.getElementById('otherProblem');
+    const otherProblemText = document.getElementById('otherProblemText');
+    function showOtherProblemText(show) {
+      // Disabled while hidden so an empty box isn't sent
+      otherProblemText.hidden = !show;
+      otherProblemText.disabled = !show;
+      if (show) otherProblemText.focus();
+      else otherProblemText.value = '';
+    }
+    otherProblem.addEventListener('change', () => showOtherProblemText(otherProblem.checked));
 
     // Send in the background so people stay on this page; without JavaScript the
     // form still posts normally
