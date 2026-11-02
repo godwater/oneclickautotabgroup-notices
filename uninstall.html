@@ -203,6 +203,31 @@
         reinstall: 'Supprimée par erreur ?',
         reinstallLink: 'Réinstaller depuis le Chrome Web Store'
       },
+      ja: {
+        title: 'ご利用ありがとうございました',
+        intro: 'One Click Auto Tab Group が削除されました。削除した理由を教えていただけますか？数秒で終わり、拡張機能の改善に役立てさせていただきます。',
+        question: '削除した理由を教えてください',
+        wrongGrouping: 'タブが思いどおりにグループ化されなかった',
+        confusing: '使い方がわかりにくかった',
+        bugs: 'バグがあった、または Chrome が遅くなった',
+        notNeeded: 'もう必要なくなった',
+        otherExtension: '別の拡張機能に乗り換えた',
+        other: 'その他の理由',
+        groupingQuestion: 'どのような問題がありましたか？（省略可）',
+        splitSite: '1 つのサイトが複数のグループに分かれた',
+        unrelatedTogether: '関係のないタブが同じグループに入った',
+        wantedTopics: 'サイトごとではなく、トピックごとにグループ化したかった',
+        movedTabs: '動かしたくないタブが移動された',
+        otherProblem: 'その他',
+        otherProblemPlaceholder: 'どのようなことが起きましたか？',
+        comment: 'その他にご意見があればお聞かせください（省略可）',
+        email: '返信をご希望の場合はメールアドレス（省略可）',
+        send: '送信',
+        thanks: 'ありがとうございました。回答を送信しました。',
+        error: '回答を送信できませんでした。もう一度お試しください。',
+        reinstall: '誤って削除しましたか？',
+        reinstallLink: 'Chrome ウェブストアから再インストール'
+      },
       ko: {
         title: '떠나신다니 아쉽습니다',
         intro: 'One Click Auto Tab Group이 삭제되었습니다. 삭제한 이유를 알려 주시겠어요? 몇 초면 충분하며 확장 프로그램을 개선하는 데 큰 도움이 됩니다.',
@@ -352,6 +377,31 @@
         error: '抱歉，回答未能发送，请重试。',
         reinstall: '误删了？',
         reinstallLink: '从 Chrome 应用商店重新安装'
+      },
+      zh_TW: {
+        title: '很遺憾你要離開',
+        intro: 'One Click Auto Tab Group 已移除。可以告訴我們原因嗎？只需要幾秒鐘，就能幫助我們改善這個擴充功能。',
+        question: '你為什麼移除它？',
+        wrongGrouping: '它將我的分頁分組錯誤',
+        confusing: '使用起來很難懂',
+        bugs: '它有錯誤或拖慢了 Chrome',
+        notNeeded: '我不再需要它了',
+        otherExtension: '我改用其他擴充功能',
+        other: '其他原因',
+        groupingQuestion: '發生了什麼問題？（選填）',
+        splitSite: '它把同一個網站分散到多個群組',
+        unrelatedTogether: '它把不相關的分頁放進同一個群組',
+        wantedTopics: '我想依主題分組，而不是依網站',
+        movedTabs: '它移動了我想留在原位的分頁',
+        otherProblem: '其他問題',
+        otherProblemPlaceholder: '發生了什麼事？',
+        comment: '還有其他想告訴我們的嗎？（選填）',
+        email: '如果希望收到回覆，請留下你的電子郵件（選填）',
+        send: '傳送',
+        thanks: '謝謝！你的回覆已送出。',
+        error: '很抱歉，無法送出你的回覆，請再試一次。',
+        reinstall: '不小心移除了嗎？',
+        reinstallLink: '從 Chrome 線上應用程式商店重新安裝'
       }
     };
 
@@ -359,6 +409,7 @@
     const params = new URLSearchParams(location.search);
     const requested = (params.get('lang') || navigator.language || 'en').replace('-', '_');
     const lang = strings[requested] ? requested
+      : /^zh_(tw|hk|mo|hant)/i.test(requested) ? 'zh_TW'
       : requested.toLowerCase().startsWith('zh') ? 'zh_CN'
       : strings[requested.split('_')[0]] ? requested.split('_')[0]
       : 'en';
