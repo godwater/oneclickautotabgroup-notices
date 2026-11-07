@@ -86,6 +86,7 @@
       <input type="hidden" name="source" value="uninstall">
       <input type="hidden" name="version" id="version">
       <input type="hidden" name="language" id="language">
+      <input type="hidden" name="browser" id="browser">
 
       <fieldset>
         <legend data-i18n="question">Why did you remove it?</legend>
@@ -128,7 +129,10 @@
 
   <script>
     const strings = {
-      en: {},
+      en: {
+        slowEdge: 'It slowed down Edge',
+        reinstallLinkEdge: 'Reinstall from Microsoft Edge Add-ons'
+      },
       de: {
         title: 'Schade, dass du gehst',
         intro: 'One Click Auto Tab Group wurde entfernt. Magst du uns sagen, warum? Es dauert nur ein paar Sekunden und hilft, die Erweiterung zu verbessern.',
@@ -153,7 +157,9 @@
         thanks: 'Danke! Deine Antwort wurde gesendet.',
         error: 'Deine Antwort konnte leider nicht gesendet werden. Bitte versuche es erneut.',
         reinstall: 'Aus Versehen entfernt?',
-        reinstallLink: 'Im Chrome Web Store neu installieren'
+        reinstallLink: 'Im Chrome Web Store neu installieren',
+        slowEdge: 'Sie hat Edge verlangsamt',
+        reinstallLinkEdge: 'Bei Microsoft Edge-Add-Ons neu installieren'
       },
       es: {
         title: 'Lamentamos que te vayas',
@@ -179,7 +185,9 @@
         thanks: '¡Gracias! Tu respuesta se ha enviado.',
         error: 'No se pudo enviar tu respuesta. Inténtalo de nuevo.',
         reinstall: '¿La eliminaste por error?',
-        reinstallLink: 'Vuelve a instalarla desde Chrome Web Store'
+        reinstallLink: 'Vuelve a instalarla desde Chrome Web Store',
+        slowEdge: 'Ralentizaba Edge',
+        reinstallLinkEdge: 'Vuelve a instalarla desde Complementos de Microsoft Edge'
       },
       fr: {
         title: 'Dommage de vous voir partir',
@@ -205,7 +213,9 @@
         thanks: 'Merci ! Votre réponse a été envoyée.',
         error: "Votre réponse n'a pas pu être envoyée. Veuillez réessayer.",
         reinstall: 'Supprimée par erreur ?',
-        reinstallLink: 'Réinstaller depuis le Chrome Web Store'
+        reinstallLink: 'Réinstaller depuis le Chrome Web Store',
+        slowEdge: 'Elle ralentissait Edge',
+        reinstallLinkEdge: 'Réinstaller depuis Modules complémentaires Microsoft Edge'
       },
       ja: {
         title: 'ご利用ありがとうございました',
@@ -231,7 +241,9 @@
         thanks: 'ありがとうございました。回答を送信しました。',
         error: '回答を送信できませんでした。もう一度お試しください。',
         reinstall: '誤って削除しましたか？',
-        reinstallLink: 'Chrome ウェブストアから再インストール'
+        reinstallLink: 'Chrome ウェブストアから再インストール',
+        slowEdge: 'Edge が遅くなった',
+        reinstallLinkEdge: 'Microsoft Edge アドオンから再インストール'
       },
       ko: {
         title: '떠나신다니 아쉽습니다',
@@ -257,7 +269,9 @@
         thanks: '감사합니다! 답변이 전송되었습니다.',
         error: '답변을 보내지 못했습니다. 다시 시도해 주세요.',
         reinstall: '실수로 삭제하셨나요?',
-        reinstallLink: 'Chrome 웹 스토어에서 다시 설치'
+        reinstallLink: 'Chrome 웹 스토어에서 다시 설치',
+        slowEdge: 'Edge가 느려졌어요',
+        reinstallLinkEdge: 'Microsoft Edge 추가 기능에서 다시 설치'
       },
       pl: {
         title: 'Szkoda, że odchodzisz',
@@ -283,7 +297,9 @@
         thanks: 'Dziękujemy! Twoja odpowiedź została wysłana.',
         error: 'Nie udało się wysłać odpowiedzi. Spróbuj ponownie.',
         reinstall: 'Usunięte przez pomyłkę?',
-        reinstallLink: 'Zainstaluj ponownie z Chrome Web Store'
+        reinstallLink: 'Zainstaluj ponownie z Chrome Web Store',
+        slowEdge: 'Spowalniało Edge',
+        reinstallLinkEdge: 'Zainstaluj ponownie z Dodatków Microsoft Edge'
       },
       ru: {
         title: 'Жаль, что вы уходите',
@@ -309,7 +325,9 @@
         thanks: 'Спасибо! Ваш ответ отправлен.',
         error: 'Не удалось отправить ответ. Попробуйте ещё раз.',
         reinstall: 'Удалили по ошибке?',
-        reinstallLink: 'Установить снова из Интернет-магазина Chrome'
+        reinstallLink: 'Установить снова из Интернет-магазина Chrome',
+        slowEdge: 'Оно замедляло Edge',
+        reinstallLinkEdge: 'Установить снова из надстроек Microsoft Edge'
       },
       tr: {
         title: 'Gittiğinize üzüldük',
@@ -335,7 +353,9 @@
         thanks: 'Teşekkürler! Yanıtınız gönderildi.',
         error: 'Yanıtınız gönderilemedi. Lütfen tekrar deneyin.',
         reinstall: 'Yanlışlıkla mı kaldırdınız?',
-        reinstallLink: 'Chrome Web Mağazası\'ndan yeniden yükleyin'
+        reinstallLink: 'Chrome Web Mağazası\'ndan yeniden yükleyin',
+        slowEdge: 'Edge\'i yavaşlattı',
+        reinstallLinkEdge: 'Microsoft Edge Eklentileri\'nden yeniden yükleyin'
       },
       uk: {
         title: 'Шкода, що ви йдете',
@@ -361,7 +381,9 @@
         thanks: 'Дякуємо! Вашу відповідь надіслано.',
         error: 'Не вдалося надіслати відповідь. Спробуйте ще раз.',
         reinstall: 'Видалили помилково?',
-        reinstallLink: 'Установити знову з Інтернет-магазину Chrome'
+        reinstallLink: 'Установити знову з Інтернет-магазину Chrome',
+        slowEdge: 'Воно сповільнювало Edge',
+        reinstallLinkEdge: 'Установити знову з надбудов Microsoft Edge'
       },
       zh_CN: {
         title: '很遗憾你要离开',
@@ -387,7 +409,9 @@
         thanks: '谢谢！你的回答已发送。',
         error: '抱歉，回答未能发送，请重试。',
         reinstall: '误删了？',
-        reinstallLink: '从 Chrome 应用商店重新安装'
+        reinstallLink: '从 Chrome 应用商店重新安装',
+        slowEdge: '让 Edge 变慢',
+        reinstallLinkEdge: '从 Microsoft Edge 加载项商店重新安装'
       },
       zh_TW: {
         title: '很遺憾你要離開',
@@ -413,11 +437,13 @@
         thanks: '謝謝！你的回覆已送出。',
         error: '很抱歉，無法送出你的回覆，請再試一次。',
         reinstall: '不小心移除了嗎？',
-        reinstallLink: '從 Chrome 線上應用程式商店重新安裝'
+        reinstallLink: '從 Chrome 線上應用程式商店重新安裝',
+        slowEdge: '它拖慢了 Edge',
+        reinstallLinkEdge: '從 Microsoft Edge 附加元件商店重新安裝'
       }
     };
 
-    // The extension adds ?lang=<Chrome UI language>&v=<version>&id=<extension id>
+    // The extension adds ?lang=<browser UI language>&v=<version>&id=<extension id>&browser=<chrome or edge>
     const params = new URLSearchParams(location.search);
     const requested = (params.get('lang') || navigator.language || 'en').replace('-', '_');
     const lang = strings[requested] ? requested
@@ -426,9 +452,15 @@
       : strings[requested.split('_')[0]] ? requested.split('_')[0]
       : 'en';
 
+    // The extension adds &browser=edge in Microsoft Edge, where text naming
+    // Chrome has an Edge version (key + 'Edge') and the store is Edge Add-ons
+    const browser = params.get('browser') === 'edge' ? 'edge' : 'chrome';
+
     document.documentElement.lang = lang.replace('_', '-');
     document.querySelectorAll('[data-i18n]').forEach((element) => {
-      const text = strings[lang][element.dataset.i18n];
+      const key = element.dataset.i18n;
+      const text = (browser === 'edge' && strings[lang][key + 'Edge']) || strings[lang][key]
+        || (browser === 'edge' && strings.en[key + 'Edge']);
       if (text) element.textContent = text;
     });
     document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
@@ -437,10 +469,13 @@
     });
     document.getElementById('version').value = params.get('v') || '';
     document.getElementById('language').value = lang;
+    document.getElementById('browser').value = browser;
 
     const extensionId = params.get('id');
     if (extensionId && /^[a-p]{32}$/.test(extensionId)) {
-      document.getElementById('reinstallLink').href = `https://chromewebstore.google.com/detail/${extensionId}`;
+      document.getElementById('reinstallLink').href = browser === 'edge'
+        ? `https://microsoftedge.microsoft.com/addons/detail/${extensionId}`
+        : `https://chromewebstore.google.com/detail/${extensionId}`;
       document.getElementById('reinstall').hidden = false;
     }
 
