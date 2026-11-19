@@ -81,8 +81,9 @@
   <p data-i18n="intro">One Click Auto Tab Group has been removed. Could you tell us why? It only takes a few seconds and helps make the extension better.</p>
 
   <div class="card">
-    <form id="survey" action="https://formspree.io/f/mjkybprb" method="POST">
-      <input type="hidden" name="_subject" value="Uninstall survey">
+    <form id="survey" action="https://moondoor.games/api/tab-group/feedback" method="POST">
+      <!-- Hidden from people; a bot that fills it in is ignored -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px">
       <input type="hidden" name="source" value="uninstall">
       <input type="hidden" name="version" id="version">
       <input type="hidden" name="language" id="language">
